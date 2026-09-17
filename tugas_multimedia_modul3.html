@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Lanjutan Praktikum Modul 2 - Bootstrap & Multimedia</title>
+    <!-- Memanggil CSS Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        section {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        /* Style untuk Drag and Drop */
+        .drop-zone {
+            width: 150px;
+            height: 80px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px dashed #007bff;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <!-- Header Halaman -->
+        <div class="jumbotron bg-primary text-white text-center">
+            <h1 class="display-4">Praktikum Modul 2</h1>
+            <p class="lead">HTML Multimedia, Bootstrap Framework, Geolocation, & Drag and Drop API</p>
+        </div>
+
+        <!-- 1. FORM REGISTRASI BOOTSTRAP (Tambahan Tugas Modul) -->
+        <section>
+            <h2>1. Form Registrasi Peserta</h2>
+            <p class="text-muted">Formulir pendaftaran menggunakan komponen dan kelas Grid Bootstrap.</p>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                </div>
+                <div class="form-group">
+                    <label for="jk">Jenis Kelamin:</label>
+                    <select class="form-control" id="jk">
+                        <option>Pria</option>
+                        <option>Wanita</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Kirim Pendaftaran</button>
+            </form>
+        </section>
+
+        <!-- 2. HTML AUDIO -->
+        <section>
+            <h2>2. HTML5 Audio</h2>
+            <p class="text-muted">Contoh pemutaran file audio menggunakan elemen <code>&lt;audio&gt;</code>:</p>
+            <audio controls class="w-100">
+                <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+                <source src="horse.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+        </section>
+
+        <!-- 3. HTML VIDEO & JAVASCRIPT CONTROLS -->
+        <section>
+            <h2>3. HTML5 Video & JavaScript Controls</h2>
+            <p class="text-muted">Contoh video HTML5 dengan tombol kontrol interaktif:</p>
+            <div class="mb-3">
+                <button class="btn btn-outline-primary btn-sm" onclick="playPause()">Play/Pause</button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="makeBig()">Big (560px)</button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="makeSmall()">Small (320px)</button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="makeNormal()">Normal (420px)</button>
+            </div>
+            <div class="embed-responsive">
+                <video id="video1" width="420" controls class="rounded border">
+                    <source src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung HTML5 video.
+                </video>
+            </div>
+            <small class="form-text text-muted mt-2">Video courtesy of <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.</small>
+        </section>
+
+        <!-- 4. YOUTUBE VIDEO -->
+        <section>
+            <h2>4. YouTube Video (via iFrame)</h2>
+            <p class="text-muted">Contoh penyematan video YouTube yang responsif:</p>
+            <div class="ratio ratio-16x9">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="YouTube video player" frameborder="0" allowfullscreen class="rounded border"></iframe>
+            </div>
+        </section>
+
+        <!-- 5. HTML GEOLOCATION API -->
+        <section>
+            <h2>5. HTML Geolocation API</h2>
+            <p class="text-muted">Klik tombol di bawah untuk mendapatkan koordinat posisi geografis Anda:</p>
+            <button class="btn btn-info text-white" onclick="getLocation()">Cek Lokasi Saya</button>
+            <p id="geo-result" class="font-weight-bold text-danger mt-3"></p>
+        </section>
+
+        <!-- 6. HTML DRAG AND DROP API -->
+        <section>
+            <h2>6. HTML Drag and Drop API</h2>
+            <p class="text-muted">Seret (drag) gambar logo di bawah ini ke dalam kotak kosong:</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Kotak Asal:</p>
+                    <div id="div1" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31" alt="W3Schools Logo">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>Kotak Tujuan:</p>
+                    <div id="div2" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER (Sesuai Ketentuan Tugas Modul: Berisi Nama dan NIM) -->
+        <footer class="text-center py-4 mt-4 border-top">
+            <p class="mb-0 text-muted">Praktikum Multimedia &copy; 2026 | Dibuat oleh:</p>
+            <p class="font-weight-bold text-dark">Nama: [Nama Anda] | NIM: [NIM Anda]</p>
+        </footer>
+
+    </div>
+
+    <!-- Memanggil JS Bootstrap & Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Kontrol Video JavaScript
+        var myVideo = document.getElementById("video1");
+        
+        function playPause() {
+            if (myVideo.paused)
+                myVideo.play();
+            else
+                myVideo.pause();
+        }
+
+        function makeBig() {
+            myVideo.width = 560;
+        }
+
+        function makeSmall() {
+            myVideo.width = 320;
+        }
+
+        function makeNormal() {
+            myVideo.width = 420;
+        }
+
+        // Geolocation API Logic
+        var x = document.getElementById("geo-result");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation tidak didukung oleh browser ini.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "Pengguna menolak permintaan Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Informasi lokasi tidak tersedia.";
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "Waktu permintaan habis.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "Terjadi kesalahan yang tidak diketahui.";
+                    break;
+            }
+        }
+
+        // Drag and Drop API Logic
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</body>
+</html>
